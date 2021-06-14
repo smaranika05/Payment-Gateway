@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Credit Card Payment Gateway</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Payment-Gateway.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <h4 class="text-uppercase">Payment Details</h4>
+        <div class="card-header p-0">
+            <h2 class="mb-0"> <button class="btn btn-light btn-block text-left p-3 rounded-0" data-toggle="collapse"
+                    data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <div class="d-flex align-items-center justify-content-between"> <span>Credit card</span>
+                        <div class="icons"> <img src="https://i.imgur.com/2ISgYja.png" width="30"> <img
+                                src="https://i.imgur.com/W1vtnOV.png" width="30"> <img
+                                src="https://i.imgur.com/35tC99g.png" width="30"> </div>
+                    </div>
+                </button> </h2>
+        </div>
+        <div class="form-group"> <label for="name" class="text-uppercase">name on the card</label> <input type="text"
+                class="form-control" placeholder="John Doe"> </div>
+        <div class="form-group"> <label for="card" class="text-uppercase">card number</label>
+            <div class="card-number"> <input type="text" class="card-no" step="4" placeholder="1234 4567 5869 1234"
+                    minlength="19" maxlength="19"> <span class=""> <img
+                        src="https://www.freepnglogos.com/uploads/mastercard-png/mastercard-marcus-samuelsson-group-2.png"
+                        alt="" width="30" height="30"> </span> </div>
+        </div>
+        <div class="d-flex w-100">
+            <div class="d-flex w-50 pr-sm-4">
+                <div class="form-group"> <label for="expiry" class="text-uppercase">exp.date</label> <input type="text"
+                        class="form-control" id="exp" placeholder="03/25"> </div>
+            </div>
+            <div class="d-flex w-50 pl-sm-5 pl-3">
+                <div class="form-group"> <label for="cvv">CVV</label> <a href="#" class="cvv-exmp"
+                        title="CVV is a credit or debit card number, the last three digit number printed on the signature panel">what's
+                        this</a> <input type="password" class="form-control pr-5" maxlength="3"
+                        placeholder="&#9679;&#9679;&#9679;"> </div>
+            </div>
+        </div>
+
+        <div class="form-inline py-sm-2"> <input type="checkbox" name="details" id="details"> <label for="details"
+                class="px-sm-2 pl-2 pt-sm-0 pt-2">Save my details for future purchases</label> </div>
+        <div class="my-3"> <input type="submit" value="place your order"
+                class="text-uppercase btn btn-primary btn-block p-3"> </div>
+        <div id="form-footer">
+            <p>By placing your order, you agree to our</p>
+            <p><a href="#">privacy notice</a> & <a href="#">terms of use</a>.</p>
+        </div>
+        </form>
+    </div>
+
+
+
+</body>
+<script>
+    //card formatted input
+    $('.card-no').on('keypress change', function () {
+        $(this).val(function (index, value) {
+            return value.replace(/\W/gi, '').replace(/(.{4})/g, '$1 ');
+        });
+    });
+    //for date formatted input
+    var expDate = document.getElementById('exp');
+    expDate.onkeyup = function (e) {
+        if (this.value == this.lastValue) return;
+        var caretPosition = this.selectionStart;
+        var sanitizedValue = this.value.replace(/[^0-9]/gi, '');
+        var parts = [];
+
+        for (var i = 0, len = sanitizedValue.length; i < len; i += 2) { parts.push(sanitizedValue.substring(i, i + 2)); } for (var i = caretPosition - 1; i >= 0; i--) {
+            var c = this.value[i];
+            if (c < '0' || c > '9') {
+                caretPosition--;
+            }
+        }
+        caretPosition += Math.floor(caretPosition / 2);
+
+        this.value = this.lastValue = parts.join('/');
+        this.selectionStart = this.selectionEnd = caretPosition;
+    }
+
+
+</script>
+
+</html>
