@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="Payment-Gateway.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
@@ -45,7 +48,11 @@
                         placeholder="&#9679;&#9679;&#9679;"> </div>
             </div>
         </div>
+        <div class="form-group">
+            <label for="NUMBER" class="text-uppercase">Phone Number</label>
+            <input type="tel"  class="form-control phone">
 
+        </div>
         <div class="form-inline py-sm-2"> <input type="checkbox" name="details" id="details"> <label for="details"
                 class="px-sm-2 pl-2 pt-sm-0 pt-2">Save my details for future purchases</label> </div>
         <div class="my-3"> <input type="submit" value="place your order"
@@ -60,6 +67,7 @@
 
 
 </body>
+
 <script>
     //card formatted input
     $('.card-no').on('keypress change', function () {
@@ -86,7 +94,12 @@
         this.value = this.lastValue = parts.join('/');
         this.selectionStart = this.selectionEnd = caretPosition;
     }
-
+    //phone number
+    const phoneInputField = document.querySelector(".phone");
+   const phoneInput = window.intlTelInput(phoneInputField, {
+     utilsScript:
+       "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+   });
 
 </script>
 
